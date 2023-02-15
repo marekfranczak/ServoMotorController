@@ -3,17 +3,40 @@
  */
 #include "main.h"
 
-
+/**
+* Variable that handle timer no.1
+*/
 TIM_HandleTypeDef htim1;
+/**
+* Variable that handle UART pin no.1
+*/
 UART_HandleTypeDef huart1;
 
+/**
+* Array that storage command from phone application.
+*/
 uint8_t received[3];
 
+/**
+* Function that inicialize System Clock.
+*/
 void SystemClock_Config(void);
+/**
+* Function that inicialize general-purpose input/output.
+*/
 static void MX_GPIO_Init(void);
+/**
+* Function that inicialize UART connection.
+*/
 static void MX_USART1_UART_Init(void);
+/**
+* Function that inicialize timer no.1 on  channel no.3.
+*/
 static void MX_TIM1_Init(void);
 
+/**
+* Function that receives command from phone app, sends information to timer and starts listening.
+*/
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 
 	uint8_t Data[50]; // An array that stores the sent message.
@@ -22,7 +45,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	HAL_UART_Receive_IT(&huart1, &received, 3); // Enable listening
 }
 
-
+/**
+* Main function responsible for initialize program, start PWM mode on timer no.1 channel no.3 and wait for command from phone app.
+*/
 int main(void)
 {
 
@@ -178,6 +203,9 @@ static void MX_GPIO_Init(void)
 
 }
 
+/**
+* Function handles error.
+*/
 void Error_Handler(void)
 {
 		__disable_irq();

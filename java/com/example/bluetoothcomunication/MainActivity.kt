@@ -18,12 +18,23 @@ import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
+    /**
+     * Variable that contain BluetoothAdapter object.
+     */
     private var m_bluetoothAdapter: BluetoothAdapter? = null
+    /**
+     * Variable that storage list of bluetooth device.
+     */
     private lateinit var m_pairedDivice: Set<BluetoothDevice>
+     /**
+     * Variable that storage code of successfull bluetooth operation.
+     */
     private val REQUEST_ENABLE_BLUETOOTH = 1
 
 
-    //Static variable
+    /**
+     * Static variable.
+     */
     companion object{
         val EXTRA_ADDRESS: String = "device_address"
     }
@@ -87,7 +98,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //Notifications about loss of communication
+    /**
+     * Notifications about loss of communication
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_ENABLE_BLUETOOTH) {

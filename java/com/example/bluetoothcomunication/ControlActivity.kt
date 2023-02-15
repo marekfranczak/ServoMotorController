@@ -20,7 +20,9 @@ import java.util.*
 
 class ControlActivity : AppCompatActivity() {
 
-    //Static variable
+    /**
+     * Static variable uses to creating a connection and display information about app status.
+     */
     companion object{
         var m_myUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
         var m_bluetoothSocket: BluetoothSocket? = null
@@ -91,7 +93,7 @@ class ControlActivity : AppCompatActivity() {
     }
 
     /**
-     * Function responsible for disconnect bluetooth connection
+     * Function responsible for disconnect bluetooth connection.
      */
     private fun disconnect(){
         if(m_bluetoothSocket != null){
@@ -108,7 +110,7 @@ class ControlActivity : AppCompatActivity() {
     }
 
     /**
-     * Privet class responsible for connection to bluetooth device
+     * Privet class responsible for connection to bluetooth device.
      */
     private class ConnectToDivide(c: Context): AsyncTask<Void, Void, String>(){
 
@@ -119,13 +121,17 @@ class ControlActivity : AppCompatActivity() {
             this.context = c
         }
 
-        //Information about connection status
+        /**
+         * Information about connection status.
+         */
         override fun onPreExecute() {
             super.onPreExecute()
             m_progress = ProgressDialog.show(context, "Conecting..","please wait")
         }
 
-        //Proper connection to the bluetooth device
+        /**
+         * Proper connection to the bluetooth device.
+         */
         override fun doInBackground(vararg params: Void?): String? {
             try{
                 if(m_bluetoothSocket == null || !m_isConnected){
@@ -146,7 +152,9 @@ class ControlActivity : AppCompatActivity() {
             return null
         }
 
-        //Disabling notifications when connecting to a bluetooth device
+        /**
+         * Disabling notifications when connecting to a bluetooth device.
+         */
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
             if (!connectSuccess){
